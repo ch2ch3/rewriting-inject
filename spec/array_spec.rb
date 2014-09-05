@@ -39,7 +39,7 @@
 	 	end
 
 	 	it "can take an initial value" do
-	 		expect(array.iterative_inject(3) { |sum, x| sum + x }).to eq 18
+	 		expect(array.iterative_inject(1) { |sum, x| sum + x }).to eq 16
 	 	end
 
 	 	it "can be used to multiply all the numbers in an array" do

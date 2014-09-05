@@ -1,10 +1,9 @@
 class Array
 
-	def iterative_inject(start = self[0])
-		memo ||= start
-		copy = self.dup
-		copy.shift if memo == copy[0]
-		copy.each { |element| memo = yield(memo, element) }
+	def iterative_inject(start = nil)
+		memo = start || self[0]
+		n = start.nil? ? 1 : 0
+		self.drop(n).each { |element| memo = yield(memo, element) }
 		memo
 	end
 

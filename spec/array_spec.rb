@@ -76,6 +76,10 @@
 	 		expect(array.recursive_inject(1) { |sum, x| sum + x }).to eq 16
 	 	end
 
+	 	it "takes a symbol for adding" do
+			expect(array.recursive_inject(:+)).to eq 15
+		end
+
 	 	it "leaves the original array intact" do
 			array.recursive_inject { |sum, x| sum + x }
 			expect(array).to eq [1, 2, 3, 4, 5]

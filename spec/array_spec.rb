@@ -23,15 +23,15 @@
  	context "iterative inject" do
 
  		it "can sum an array of numbers" do
-	 		expect(array.iterative_inject { |sum, x| sum + x }).to eq 15
+	 		expect(array.iterative_inject { |sum, x| sum + x + x }).to eq (array.inject { |sum, x| sum + x + x })
 	 	end
 
 	 	it "uses the first element as the default initial value" do
-	 		expect(array.iterative_inject { |sum, x| sum + x }).to eq 15
+	 		expect(array.iterative_inject { |sum, x| sum + x }).to eq (array.inject { |sum, x| sum + x })
 	 	end
 
 	 	it "can take an initial value" do
-	 		expect(array.iterative_inject(1) { |sum, x| sum + x }).to eq 16
+	 		expect(array.iterative_inject(1) { |sum, x| sum + x }).to eq(array.inject(1) { |sum, x| sum + x })
 	 	end
 
 		it "leaves the original array intact" do
@@ -45,15 +45,15 @@
 		end
 
 		it "takes a symbol for adding" do
-			expect(array.iterative_inject(:+)).to eq 15
+			expect(array.iterative_inject(:+)).to eq(array.inject(:+))
 		end
 
 		it "takes a symbol for multiplying" do
-			expect(array.iterative_inject(:*)).to eq 120
+			expect(array.iterative_inject(:*)).to eq(array.inject(:*))
 		end
 
 		it "takes a symbol for adding and a starting value" do
-			expect(array.iterative_inject(2, :+)).to eq 17
+			expect(array.iterative_inject(2, :+)).to eq(array.inject(2, :+))
 		end
 
  	end

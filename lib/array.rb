@@ -10,11 +10,11 @@ class Array
 		memo
 	end
 
-	def recursive_inject(arg1 = self.shift, arg2 = nil, &block)
-		arg1.class == Symbol	? (symbol = arg1; memo = self.shift)
-								: (symbol = arg2; memo = arg1)
+	def recursive_inject(arg1 = nil, arg2 = nil, &block)
+		arg1.class == Symbol	? (symbol = arg1; start = nil)
+								: (symbol = arg2; start = arg1)
 		copy = self.dup
-		self.unshift(memo)
+		memo = start.nil? ? copy.shift : start
 		block_given?	? memo = yield(memo, copy.shift)
 						: memo = memo.method(symbol).call(copy.shift)
 		return memo if copy.empty?
